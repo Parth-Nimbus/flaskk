@@ -1,0 +1,23 @@
+import unittest
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/hello', methods=['POST'])
+def hello():
+    data = request.get_json()
+    if not data or 'name' not in data:
+        return jsonify({'error': 'Missing name'}), 400
+    return jsonify({'message': f"Hello, {data['name']}!"})
+
+class HelloTestCase(unittest.TestCase):
+    def setUp(self):
+        self.app = app.test_client()
+
+    def test_valid_json_with_name(self):
+        response = self.app.post('/hello', json={'name': 'Alice'})
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.get_json(), {'message': 'Hello, Alice!'})
+
+if __name__ == '__main__':
+    unittest.main()

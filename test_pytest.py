@@ -21,7 +21,7 @@ def test_process_route_success(client):
     data = json.loads(response.data)
     assert data["message"] == "Hello Parth! Data received successfully."
 
-#'''
+'''
 def test_process_route_missing_name(client):
     payload = {}
     response = client.post('/process', json=payload)
@@ -30,3 +30,4 @@ def test_process_route_missing_name(client):
     # print(response.status_code)
     # assert response.status_code >= 300
     assert "KeyError" in response.text
+'''

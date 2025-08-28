@@ -26,6 +26,7 @@ def test_process_route_missing_name(client):
     payload = {}
     response = client.post('/process', json=payload)
     # Should raise a KeyError, so let's check for 500 error
-    # print(response.text)
-    print(response.status_code)
-    assert response.status_code >= 300
+    print(response.text)
+    # print(response.status_code)
+    # assert response.status_code >= 300
+    assert "KeyError" in response.text

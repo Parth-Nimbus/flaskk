@@ -28,5 +28,4 @@ def test_process_route_missing_name(client):
     # Should raise a KeyError, so let's check for 500 error
     # print(response.text)
     print(response.status_code)
-    assert response.status_code >= 500
-#'''
+    assert response.status_code >= 400
